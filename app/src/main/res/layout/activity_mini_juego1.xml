@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    tools:context=".MiniJuego1">
+
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="332dp"
+        android:layout_height="55dp"
+        android:backgroundTint="#B6B6B6"
+        android:text="[Respuesta]"
+        android:textAlignment="viewStart"
+        android:textColor="#000000"
+        tools:layout_editor_absoluteX="39dp"
+        tools:layout_editor_absoluteY="352dp" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="332dp"
+        android:layout_height="55dp"
+        android:backgroundTint="#B6B6B6"
+        android:text="[Respuesta]"
+        android:textAlignment="viewStart"
+        android:textColor="#000000"
+        tools:layout_editor_absoluteX="39dp"
+        tools:layout_editor_absoluteY="486dp" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="332dp"
+        android:layout_height="55dp"
+        android:backgroundTint="#B6B6B6"
+        android:text="[Respuesta]"
+        android:textAlignment="viewStart"
+        android:textColor="#000000"
+        tools:layout_editor_absoluteX="39dp"
+        tools:layout_editor_absoluteY="419dp" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="332dp"
+        android:layout_height="55dp"
+        android:backgroundTint="#B6B6B6"
+        android:text="[Respuesta]"
+        android:textAlignment="viewStart"
+        android:textColor="#000000"
+        tools:layout_editor_absoluteX="39dp"
+        tools:layout_editor_absoluteY="555dp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="266dp"
+        android:layout_height="103dp"
+        android:text="¿Acá iría la pregunta, no c, el fran, la come, para mi que?"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        tools:layout_editor_absoluteX="72dp"
+        tools:layout_editor_absoluteY="221dp" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="248dp"
+        android:layout_height="28dp"
+        android:text="[Nombre de la movie]"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        tools:layout_editor_absoluteX="81dp"
+        tools:layout_editor_absoluteY="35dp" />
+
+    <Button
+        android:id="@+id/button12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#A80000"
+        android:text="Siguiente"
+        tools:layout_editor_absoluteX="227dp"
+        tools:layout_editor_absoluteY="644dp" />
+
+    <Button
+        android:id="@+id/button13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#A80000"
+        android:text="Cancelar"
+        tools:layout_editor_absoluteX="72dp"
+        tools:layout_editor_absoluteY="644dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
