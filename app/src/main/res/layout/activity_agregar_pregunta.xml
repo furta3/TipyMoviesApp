@@ -61,41 +61,45 @@
         android:id="@+id/textView4"
         android:layout_width="32dp"
         android:layout_height="31dp"
+        android:layout_marginBottom="82dp"
         android:text="4."
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName7"
-        tools:layout_editor_absoluteY="529dp" />
+        app:layout_constraintBottom_toTopOf="@+id/button9"
+        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName7" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="32dp"
         android:layout_height="31dp"
+        android:layout_marginBottom="29dp"
         android:text="2."
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName4"
-        tools:layout_editor_absoluteY="409dp" />
+        app:layout_constraintBottom_toTopOf="@+id/textView9"
+        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName4" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="32dp"
         android:layout_height="31dp"
+        android:layout_marginBottom="29dp"
         android:text="3."
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName5"
-        tools:layout_editor_absoluteY="469dp" />
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName5" />
 
     <TextView
         android:id="@+id/textView10"
         android:layout_width="32dp"
         android:layout_height="31dp"
+        android:layout_marginBottom="28dp"
         android:text="1."
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName6"
-        tools:layout_editor_absoluteY="350dp" />
+        app:layout_constraintBottom_toTopOf="@+id/textView8"
+        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName6" />
 
     <EditText
         android:id="@+id/editTextTextPersonName4"

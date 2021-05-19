@@ -1,5 +1,6 @@
 package com.example.tipymovies;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -32,6 +33,9 @@ public class ListarPeliculas extends AppCompatActivity {
     // insert your themoviedb.org API KEY here
     private final static String API_KEY = Config.API_KEY;
 
+    Button buscar,siguiente;
+    TextView textoBusqueda;
+    TextView movieTitle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +45,32 @@ public class ListarPeliculas extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         connectAndGetApiData("Garfield");
+
+        buscar = (Button) findViewById(R.id.buscar);
+        textoBusqueda = (TextView) findViewById(R.id.textoBusqueda);
+        buscar.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                connectAndGetApiData(textoBusqueda.getText().toString());
+            }
+        });
+        siguiente = (Button) findViewById(R.id.siguiente);
+        siguiente.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent detalles = new Intent(ListarPeliculas.this,DetallesPelicula.class);
+                startActivity(detalles);
+            }
+        });
+
+        /*movieTitle = (TextView) findViewById(R.id.movieTitle);
+        movieTitle.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent detalles = new Intent(ListarPeliculas.this,DetallesPelicula.class);
+                startActivity(detalles);
+            }
+        });*/
     }
 
     public void connectAndGetApiData(String peli){
@@ -50,9 +80,6 @@ public class ListarPeliculas extends AppCompatActivity {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
-
-        Button buscar;
-        TextView textoBusqueda;
 
         MovieApiService movieApiService = retrofit.create(MovieApiService.class);
         Call<SearchMovieResponse> call = movieApiService.search(API_KEY,peli);
@@ -70,13 +97,6 @@ public class ListarPeliculas extends AppCompatActivity {
             }
         });
 
-        buscar = (Button) findViewById(R.id.buscar);
-        textoBusqueda = (TextView) findViewById(R.id.textoBusqueda);
-        buscar.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                connectAndGetApiData(textoBusqueda.getText().toString());
-            }
-        });
+
     }
 }
