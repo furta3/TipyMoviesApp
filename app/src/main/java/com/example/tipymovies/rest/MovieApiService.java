@@ -13,4 +13,6 @@ public interface MovieApiService {
     @GET(".")
     Call<SearchMovieResponse> search(@Query("apikey") String apiKey, @Query("s") String query);//, @Query("y") String year
 
+    @GET("lista")
+    Call<SearchMovieResponse> search2(@Query("texto_busqueda") String query, @Query("a") String a);
 }
