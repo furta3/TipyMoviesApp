@@ -28,6 +28,7 @@ public class ListarPeliculas extends AppCompatActivity {
 
     private static final String TAG = ListarPeliculas.class.getSimpleName();
     public static final String BASE_URL = Config.API_BASE_URL;
+    public static final String TTPY_MOVIES_URL = Config.TTPY_MOVIES_URL;
     private static Retrofit retrofit = null;
     private RecyclerView recyclerView = null;
     // insert your themoviedb.org API KEY here
@@ -76,13 +77,14 @@ public class ListarPeliculas extends AppCompatActivity {
     public void connectAndGetApiData(String peli){
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
+                    .baseUrl(TTPY_MOVIES_URL)//BASE_URL
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
 
         MovieApiService movieApiService = retrofit.create(MovieApiService.class);
-        Call<SearchMovieResponse> call = movieApiService.search(API_KEY,peli);
+        //Call<SearchMovieResponse> call = movieApiService.search(API_KEY,peli);
+        Call<SearchMovieResponse> call = movieApiService.search2(peli,"1");
         call.enqueue(new Callback<SearchMovieResponse>() {
             @Override
             public void onResponse(Call<SearchMovieResponse> call, Response<SearchMovieResponse> response) {
