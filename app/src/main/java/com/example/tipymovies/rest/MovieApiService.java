@@ -3,8 +3,12 @@ package com.example.tipymovies.rest;
 import com.example.tipymovies.model.SearchMovieResponse;
 import com.example.tipymovies.model.SearchUserResponse;
 
+import org.json.JSONObject;
+
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -18,6 +22,7 @@ public interface MovieApiService {
     @GET("lista")
     Call<SearchMovieResponse> search2(@Query("texto_busqueda") String query, @Query("a") String a);
 
-    @POST("user/login")
-    Call<SearchUserResponse> searchuser(@Query("email") String email, @Query("password") String password);
+    @Headers("Content-Type: application/json")
+    @POST("api/user/login")
+    Call<SearchUserResponse> searchuser(@Body JSONObject body);
 }
