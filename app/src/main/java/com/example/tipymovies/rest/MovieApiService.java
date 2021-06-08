@@ -7,6 +7,8 @@ import org.json.JSONObject;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
@@ -22,7 +24,8 @@ public interface MovieApiService {
     @GET("lista")
     Call<SearchMovieResponse> search2(@Query("texto_busqueda") String query, @Query("a") String a);
 
-    @Headers("Content-Type: application/json")
+    @FormUrlEncoded
     @POST("api/user/login")
-    Call<SearchUserResponse> searchuser(@Body JSONObject body);
+    Call<SearchUserResponse> searchuser(@Field("email") String name,
+                                        @Field("password") String username);
 }

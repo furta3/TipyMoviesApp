@@ -6,7 +6,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tipymovies.model.SearchUserResponse;
@@ -63,18 +65,18 @@ public class Login extends AppCompatActivity {
 
                 JSONObject paramObject = new JSONObject();
                 try {
-                    paramObject.put("email","bf@gmail.com" );//username.getText().toString()
-                    paramObject.put("password", "berni123");//password.getText().toString()
+                    paramObject.put("email","bernifirpo3@gmail.com" );//username.getText().toString()
+                    paramObject.put("password", "bernifirpo3");//password.getText().toString()
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                //paramObject.toRequestBody("application/json".toMediaTypeOrNull());
-                Call<SearchUserResponse> call = movieApiService.searchuser(paramObject);
-                //Call<SearchUserResponse> call = movieApiService.searchuser(username.getText().toString(),password.getText().toString());
+                Call<SearchUserResponse> call = movieApiService.searchuser(username.getText().toString(),password.getText().toString());
                 call.enqueue(new Callback<SearchUserResponse>() {
                     @Override
                     public void onResponse(Call<SearchUserResponse> call, Response<SearchUserResponse> response) {
                         User user = response.body().getResult();
+                        Log.d("Usuario",user.getUsername());
+                        Toast.makeText(Login.this, "Logeaste con exito Master "+user.getUsername(), Toast.LENGTH_SHORT).show();
                         if (user!=null){
                             Intent intento = new Intent(Login.this,ListarPeliculas.class);
                             startActivity(intento);
