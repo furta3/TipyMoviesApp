@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,6 +38,7 @@ public class ListarPeliculas extends AppCompatActivity {
     Button buscar,siguiente;
     TextView textoBusqueda;
     TextView movieTitle;
+    ImageView poster;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +66,7 @@ public class ListarPeliculas extends AppCompatActivity {
             }
         });
 
+
         /*movieTitle = (TextView) findViewById(R.id.movieTitle);
         movieTitle.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -89,8 +92,22 @@ public class ListarPeliculas extends AppCompatActivity {
             @Override
             public void onResponse(Call<SearchMovieResponse> call, Response<SearchMovieResponse> response) {
                 List<Movie> movies = response.body().getResults();
-
-                recyclerView.setAdapter(new MoviesAdapter(movies, R.layout.list_item_movie, getApplicationContext()));
+                MoviesAdapter ma = new MoviesAdapter(movies, R.layout.list_item_movie, getApplicationContext());
+                ma.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent detalles = new Intent(ListarPeliculas.this,DetallesPelicula.class);
+                        Bundle mybundle = new Bundle();
+                        mybundle.putString("imdbID",movies.get(recyclerView.getChildAdapterPosition(v)).getImdbID());
+                        mybundle.putString("titulo",movies.get(recyclerView.getChildAdapterPosition(v)).getTitle());
+                        mybundle.putString("poster",movies.get(recyclerView.getChildAdapterPosition(v)).getPoster());
+                        mybundle.putString("anio",movies.get(recyclerView.getChildAdapterPosition(v)).getYear());
+                        detalles.putExtras(mybundle);
+                        startActivity(detalles);
+                        //Toast.makeText(getApplicationContext(),"Selección: "+movies.get(recyclerView.getChildAdapterPosition(v)).getTitle(),Toast.LENGTH_SHORT).show();
+                    }
+                });
+                recyclerView.setAdapter(ma);
                 Log.d(TAG, "Number of movies received: " + movies.size());
             }
             @Override

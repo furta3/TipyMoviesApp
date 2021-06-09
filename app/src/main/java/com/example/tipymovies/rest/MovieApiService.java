@@ -28,4 +28,9 @@ public interface MovieApiService {
     @POST("api/user/login")
     Call<SearchUserResponse> searchuser(@Field("email") String name,
                                         @Field("password") String username);
+    //Call<SearchUserResponse> searchuser(@Body JSONObject body);
+
+    @GET("/api/agregarPregunta")
+    void agregarPregunta(@Query("imdbID") String imdbID,@Query("pregunta") String pregunta,@Query("respuestaC") String respuestaC,@Query("respuestaI1") String respuestaI1,@Query("respuestaI2") String respuestaI2,@Query("respuestaI3") String respuestaI3,@Query("a") String val);
+
 }
