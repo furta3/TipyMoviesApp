@@ -24,14 +24,9 @@ public class AgregarPregunta extends AppCompatActivity {
     private final static String API_KEY = Config.API_KEY;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        pre = (EditText) findViewById(R.id.taPregunta);
-        resC = (EditText) findViewById(R.id.tbResC);
-        resI1 = (EditText) findViewById(R.id.tbResI1);
-        resI2 = (EditText) findViewById(R.id.tbResI2);
-        resI3 = (EditText) findViewById(R.id.tbResI3);
-        titulo = (TextView) findViewById(R.id.tbTituloPeli);
+
         Bundle mybundle = this.getIntent().getExtras();
-        String tit = "Agregando prefuta a "+ mybundle.getString("titulo");
+        String tit = "Agregando pregunta a "+ mybundle.getString("titulo");
         //titulo.setText(tit);
 
         super.onCreate(savedInstanceState);
@@ -40,13 +35,21 @@ public class AgregarPregunta extends AppCompatActivity {
         AgregarP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (retrofit == null) {
                     retrofit = new Retrofit.Builder()
+
                             .baseUrl(TTPY_MOVIES_URL)//BASE_URL
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
-                }
 
+                }
+                pre = (EditText) findViewById(R.id.taPregunta);
+                resC = (EditText) findViewById(R.id.tbResC);
+                resI1 = (EditText) findViewById(R.id.tbResI1);
+                resI2 = (EditText) findViewById(R.id.tbResI2);
+                resI3 = (EditText) findViewById(R.id.tbResI3);
+                titulo = (TextView) findViewById(R.id.tbTituloPeli);
                 MovieApiService movieApiService = retrofit.create(MovieApiService.class);
                 movieApiService.agregarPregunta(mybundle.getString("imdbID"),pre.getText().toString(),resC.getText().toString(),resI1.getText().toString(),resI2.getText().toString(),resI3.getText().toString(),"a");
             }
