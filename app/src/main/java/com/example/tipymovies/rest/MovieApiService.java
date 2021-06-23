@@ -1,6 +1,8 @@
 package com.example.tipymovies.rest;
 
+import com.example.tipymovies.model.JoinTopTen;
 import com.example.tipymovies.model.SearchMovieResponse;
+import com.example.tipymovies.model.SearchTopTenResponse;
 import com.example.tipymovies.model.SearchUserResponse;
 
 import org.json.JSONObject;
@@ -23,6 +25,9 @@ public interface MovieApiService {
 
     @GET("lista")
     Call<SearchMovieResponse> search2(@Query("texto_busqueda") String query, @Query("a") String a);
+
+    @GET("topten")
+    Call<SearchTopTenResponse> toptenJoin();
 
     @FormUrlEncoded
     @POST("api/user/login")
