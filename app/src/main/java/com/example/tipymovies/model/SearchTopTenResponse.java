@@ -7,7 +7,7 @@ import java.util.List;
 
 public class SearchTopTenResponse {
 
-    @SerializedName("Search")
+    @SerializedName("topten")
     private List<JoinTopTen> results;
 
     public List<JoinTopTen> getResults() {

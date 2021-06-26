@@ -53,14 +53,14 @@ public class TopTen extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         connectAndGetApiData();
 
-        buscar = (Button) findViewById(R.id.buscar);
+        /*buscar = (Button) findViewById(R.id.buscar);
         textoBusqueda = (TextView) findViewById(R.id.textoBusqueda);
         buscar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 connectAndGetApiData();
             }
-        });
+        });*/
     }
 
     public void connectAndGetApiData(){

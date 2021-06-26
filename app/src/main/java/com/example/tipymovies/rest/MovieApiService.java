@@ -26,7 +26,7 @@ public interface MovieApiService {
     @GET("lista")
     Call<SearchMovieResponse> search2(@Query("texto_busqueda") String query, @Query("a") String a);
 
-    @GET("topten")
+    @GET("api/RankingMovil")
     Call<SearchTopTenResponse> toptenJoin();
 
     @FormUrlEncoded

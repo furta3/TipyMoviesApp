@@ -63,7 +63,8 @@ public class TopTenAdapter extends RecyclerView.Adapter<TopTenAdapter.TopTenView
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull TopTenViewHolder holder, int position) {
-
+        holder.movieTitle.setText(topTens.get(position).getUserid());
+        holder.data.setText(topTens.get(position).getPuntos());
     }
 
 
