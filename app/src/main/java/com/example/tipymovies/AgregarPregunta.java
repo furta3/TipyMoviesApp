@@ -51,7 +51,7 @@ public class AgregarPregunta extends AppCompatActivity {
                 resI3 = (EditText) findViewById(R.id.tbResI3);
                 titulo = (TextView) findViewById(R.id.tbTituloPeli);
                 MovieApiService movieApiService = retrofit.create(MovieApiService.class);
-                movieApiService.agregarPregunta(mybundle.getString("imdbID"),pre.getText().toString(),resC.getText().toString(),resI1.getText().toString(),resI2.getText().toString(),resI3.getText().toString(),"a");
+                movieApiService.agregarPregunta(mybundle.getString("imdbID"),pre.getText().toString(),resC.getText().toString(),resI1.getText().toString(),resI2.getText().toString(),resI3.getText().toString());
             }
         });
     }

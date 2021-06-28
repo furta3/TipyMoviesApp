@@ -77,7 +77,7 @@ public class TopTen extends AppCompatActivity {
             @Override
           public void onResponse(Call<SearchTopTenResponse> call, Response<SearchTopTenResponse> response) {
                 List<JoinTopTen> top10 = response.body().getResults();
-                TopTenAdapter tt = new TopTenAdapter(top10, R.layout.list_item_movie, getApplicationContext());
+                TopTenAdapter tt = new TopTenAdapter(top10, R.layout.list_item_top10, getApplicationContext());
                 recyclerView.setAdapter(tt);
             }
 

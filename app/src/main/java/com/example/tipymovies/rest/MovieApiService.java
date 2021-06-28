@@ -36,6 +36,6 @@ public interface MovieApiService {
     //Call<SearchUserResponse> searchuser(@Body JSONObject body);
 
     @GET("/api/agregarPregunta")
-    void agregarPregunta(@Query("imdbID") String imdbID,@Query("pregunta") String pregunta,@Query("respuestaC") String respuestaC,@Query("respuestaI1") String respuestaI1,@Query("respuestaI2") String respuestaI2,@Query("respuestaI3") String respuestaI3,@Query("a") String val);
+    void agregarPregunta(@Query("imdbID") String imdbID,@Query("pregunta") String pregunta,@Query("respuestaC") String respuestaC,@Query("respuestaI1") String respuestaI1,@Query("respuestaI2") String respuestaI2,@Query("respuestaI3") String respuestaI3);
 
 }

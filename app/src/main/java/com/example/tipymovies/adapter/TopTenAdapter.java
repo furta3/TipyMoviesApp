@@ -43,14 +43,13 @@ public class TopTenAdapter extends RecyclerView.Adapter<TopTenAdapter.TopTenView
 
     public static class TopTenViewHolder extends RecyclerView.ViewHolder {
         LinearLayout moviesLayout;
-        TextView movieTitle;
+        TextView username;
         TextView data;
-        ImageView movieImage;
+
         public TopTenViewHolder(View v) {
             super(v);
             moviesLayout = (LinearLayout) v.findViewById(R.id.movies_layout);
-            movieImage = (ImageView) v.findViewById(R.id.movie_image);
-            movieTitle = (TextView) v.findViewById(R.id.movieTitle);
+            username = (TextView) v.findViewById(R.id.movieTitle);
             data = (TextView) v.findViewById(R.id.date);
         }
     }
@@ -63,7 +62,7 @@ public class TopTenAdapter extends RecyclerView.Adapter<TopTenAdapter.TopTenView
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull TopTenViewHolder holder, int position) {
-        holder.movieTitle.setText(topTens.get(position).getUserid());
+        holder.username.setText(topTens.get(position).getUsername());
         holder.data.setText(topTens.get(position).getPuntos());
     }
 

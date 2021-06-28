@@ -9,7 +9,7 @@ public class JoinTopTen {
 
         @SerializedName("user_id")
         private String userid;
-        //@SerializedName("username")
+        @SerializedName("username")
         private String username;
         @SerializedName("puntos")
         private String puntos;

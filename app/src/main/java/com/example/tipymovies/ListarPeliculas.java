@@ -35,7 +35,7 @@ public class ListarPeliculas extends AppCompatActivity {
     // insert your themoviedb.org API KEY here
     private final static String API_KEY = Config.API_KEY;
 
-    Button buscar,siguiente;
+    Button buscar,siguiente,top10;
     TextView textoBusqueda;
     TextView movieTitle;
     ImageView poster;
@@ -55,6 +55,14 @@ public class ListarPeliculas extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 connectAndGetApiData(textoBusqueda.getText().toString());
+            }
+        });
+        top10 = (Button) findViewById(R.id.top10);
+        top10.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent topglobal = new Intent(ListarPeliculas.this,TopTen.class);
+                startActivity(topglobal);
             }
         });
         siguiente = (Button) findViewById(R.id.siguiente);
