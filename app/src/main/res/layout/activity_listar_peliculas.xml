@@ -7,100 +7,97 @@
     android:background="#000000"
     tools:context=".ListarPeliculas">
 
-    <EditText
-        android:id="@+id/textoBusqueda"
-        android:layout_width="382dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="64dp"
-        android:backgroundTint="#FFFFFF"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:outlineSpotShadowColor="#FFFFFF"
-        android:shadowColor="#FFFFFF"
-        android:text="Buscar"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.482"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="416dp"
-        android:layout_height="540dp"
-        android:background="#202020"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@+id/pagina"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="410dp"
+        android:layout_height="165dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.712">
+        tools:layout_editor_absoluteX="1dp">
+
+        <Button
+            android:id="@+id/buscar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@+id/textoBusqueda"
+            android:backgroundTint="#A80000"
+            android:text="Buscar" />
+
+        <EditText
+            android:id="@+id/textoBusqueda"
+            android:layout_width="275dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#FFFFFF"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:outlineSpotShadowColor="#FFFFFF"
+            android:shadowColor="#FFFFFF"
+            android:text="Buscar"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/top10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textoBusqueda"
+            android:layout_marginLeft="15dp"
+            android:backgroundTint="#A80000"
+            android:text="Top 10 Global" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="415dp"
+        android:layout_height="426dp"
+        android:background="#202020"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        tools:layout_editor_absoluteX="-2dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="546dp" />
-    </LinearLayout>
+            android:layout_width="413dp"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
 
-    <Button
-        android:id="@+id/siguiente"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="13dp"
-        android:backgroundTint="#A80000"
-        android:text="Siguente"
+    <RelativeLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="410dp"
+        android:layout_height="65dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/pagina" />
+        app:layout_constraintHorizontal_bias="0.546"
+        app:layout_constraintStart_toStartOf="parent">
 
-    <Button
-        android:id="@+id/pagina"
-        android:layout_width="57dp"
-        android:layout_height="48dp"
-        android:backgroundTint="#FFFFFF"
-        android:text="1"
-        android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textoBusqueda"
-        app:layout_constraintVertical_bias="0.996" />
+        <Button
+            android:id="@+id/pagina"
+            android:layout_width="57dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="13dp"
+            android:layout_toRightOf="@+id/anterior"
+            android:backgroundTint="#FFFFFF"
+            android:text="1"
+            android:textColor="#000000" />
 
-    <Button
-        android:id="@+id/anterior"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="13dp"
-        android:backgroundTint="#A80000"
-        android:text="Anterior"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/pagina"
-        app:layout_constraintStart_toStartOf="parent" />
+        <Button
+            android:id="@+id/anterior"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:backgroundTint="#A80000"
+            android:text="Anterior" />
 
-    <Button
-        android:id="@+id/buscar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="140dp"
-        android:backgroundTint="#A80000"
-        android:text="Buscar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/top10"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
-
-    <Button
-        android:id="@+id/top10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#A80000"
-        android:text="Top 10 Global"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        <Button
+            android:id="@+id/siguiente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="13dp"
+            android:layout_marginLeft="103dp"
+            android:layout_toRightOf="@+id/pagina"
+            android:backgroundTint="#A80000"
+            android:text="Siguente" />
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
