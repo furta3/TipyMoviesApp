@@ -7,7 +7,7 @@ import java.util.List;
 
 public class JoinTopTen {
 
-        @SerializedName("userid")
+        @SerializedName("user_id")
         private String userid;
         @SerializedName("username")
         private String username;

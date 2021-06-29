@@ -9,9 +9,9 @@
 
     <EditText
         android:id="@+id/textoBusqueda"
-        android:layout_width="273dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="382dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="64dp"
         android:backgroundTint="#FFFFFF"
         android:ems="10"
         android:inputType="textPersonName"
@@ -20,25 +20,27 @@
         android:text="Buscar"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.115"
+        app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="413dp"
-        android:layout_height="591dp"
-        android:layout_marginTop="92dp"
+        android:layout_width="416dp"
+        android:layout_height="540dp"
         android:background="#202020"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/pagina"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.712">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="546dp" />
     </LinearLayout>
 
     <Button
@@ -62,7 +64,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/textoBusqueda"
+        app:layout_constraintVertical_bias="0.996" />
 
     <Button
         android:id="@+id/anterior"
@@ -79,13 +82,25 @@
         android:id="@+id/buscar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="13dp"
+        android:layout_marginStart="140dp"
         android:backgroundTint="#A80000"
         android:text="Buscar"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textoBusqueda"
+        app:layout_constraintStart_toEndOf="@+id/top10"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.035" />
+        app:layout_constraintVertical_bias="0.023" />
+
+    <Button
+        android:id="@+id/top10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#A80000"
+        android:text="Top 10 Global"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
