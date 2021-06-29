@@ -45,6 +45,10 @@ public class DetallesPelicula extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 Intent detalles = new Intent(DetallesPelicula.this,MiniJuego1.class);
+                mybundle.putString("imdbID",mybundle.getString("imdbID"));
+                mybundle.putString("titulo",mybundle.getString("titulo"));
+                mybundle.putString("poster",mybundle.getString("poster"));
+                detalles.putExtras(mybundle);
                 startActivity(detalles);
             }
         });

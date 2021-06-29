@@ -1,11 +1,12 @@
 package com.example.tipymovies;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+import android.widget.Button;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MiniJuego1 extends AppCompatActivity {
 
+    Button res1,res2,res3,res4;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
