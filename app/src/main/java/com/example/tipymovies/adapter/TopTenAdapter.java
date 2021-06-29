@@ -49,7 +49,7 @@ public class TopTenAdapter extends RecyclerView.Adapter<TopTenAdapter.TopTenView
         public TopTenViewHolder(View v) {
             super(v);
             moviesLayout = (LinearLayout) v.findViewById(R.id.movies_layout);
-            username = (TextView) v.findViewById(R.id.movieTitle);
+            username = (TextView) v.findViewById(R.id.username);
             data = (TextView) v.findViewById(R.id.date);
         }
     }

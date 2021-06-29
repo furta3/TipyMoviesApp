@@ -1,6 +1,7 @@
 package com.example.tipymovies.rest;
 
 import com.example.tipymovies.model.JoinTopTen;
+import com.example.tipymovies.model.PreguntasReturn;
 import com.example.tipymovies.model.SearchMovieResponse;
 import com.example.tipymovies.model.SearchTopTenResponse;
 import com.example.tipymovies.model.SearchUserResponse;
@@ -35,7 +36,7 @@ public interface MovieApiService {
                                         @Field("password") String username);
     //Call<SearchUserResponse> searchuser(@Body JSONObject body);
 
-    @GET("/api/agregarPregunta")
-    void agregarPregunta(@Query("imdbID") String imdbID,@Query("pregunta") String pregunta,@Query("respuestaC") String respuestaC,@Query("respuestaI1") String respuestaI1,@Query("respuestaI2") String respuestaI2,@Query("respuestaI3") String respuestaI3);
+    @GET("api/agregarPregunta")
+    Call<PreguntasReturn> agregarPregunta(@Query("imdbID") String imdbID, @Query("pregunta") String pregunta, @Query("respuestaC") String respuestaC, @Query("respuestaI1") String respuestaI1, @Query("respuestaI2") String respuestaI2, @Query("respuestaI3") String respuestaI3);
 
 }
