@@ -1,7 +1,5 @@
 package com.example.tipymovies;
 
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -35,8 +33,9 @@ public class MiniJuego1 extends AppCompatActivity {
     TextView pre, titulo;
     List<Trivia> Preguntas;
     int contador  = -1;
-    int combo=0,puntos=0,resCorrectas=0;
+    int combo=1,puntos=0,resCorrectas=0;
     Bundle mybundle;
+    String userid="7";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,35 +74,32 @@ public class MiniJuego1 extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 puntuar(res1.getText().toString());
-                res1.setBackgroundColor(Color.parseColor("#00d639"));
-                res1.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#00d639")));
+
                 next();
             }
         });
         res2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                puntuar(res2.getText().toString());
                 next();
             }
         });
         res3.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                puntuar(res3.getText().toString());
                 next();
             }
         });
         res4.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                puntuar(res4.getText().toString());
                 next();
             }
         });
-        res1.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                next();
-            }
-        });
+
     }
     public void next(){
         contador++;
@@ -125,13 +121,13 @@ public class MiniJuego1 extends AppCompatActivity {
         }
         else{
             MovieApiService movieApiService = retrofit.create(MovieApiService.class);
-            Call<String> call = movieApiService.puntuarMiniJuego1(mybundle.getString("imdbID"),"7","333");
+            Call<String> call = movieApiService.puntuarMiniJuego1(mybundle.getString("imdbID"),userid,puntos);
             call.enqueue(new Callback<String>() {
                 @Override
                 public void onResponse(Call<String> call, Response<String> response) {
                     String results = response.body();
-                    Toast.makeText(Login.this, "Puntos:  "+user.getUsername(), Toast.LENGTH_SHORT).show();
-                    Log.d(TAG, "------------Resultado: "+results+" ------------------");
+                    Toast.makeText(MiniJuego1.this, "Puntos:  "+puntos+ "  imbdID: "+mybundle.getString("imdbID")+" User_id: "+userid, Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "------------Puntos:  "+puntos+ "  imbdID: "+mybundle.getString("imdbID")+" User_id: "+userid+" Resultado: "+results+" ------------------");
 
                 }
                 @Override
@@ -144,8 +140,9 @@ public class MiniJuego1 extends AppCompatActivity {
     public void puntuar(String respuesta){
         if(respuesta.equals(Preguntas.get(contador).getRespuestaC())){
             resCorrectas+=1;
-            combo+=1;
             puntos+=10*combo;
+            combo++;
+            Toast.makeText(MiniJuego1.this, "Puntos:  "+puntos, Toast.LENGTH_SHORT).show();
         }
         else{
             combo=1;
