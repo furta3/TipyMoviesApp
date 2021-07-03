@@ -7,52 +7,74 @@
     android:background="#000000"
     tools:context=".Login">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:text="Bienvenido a TipyMovies"
-        android:textColor="#D30E0E"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.105" />
+        <TextView
 
-    <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#FFFFFF"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        android:textColor="#FFFFFF"
-        tools:layout_editor_absoluteX="98dp"
-        tools:layout_editor_absoluteY="431dp" />
+            android:id="@+id/textView"
 
-    <EditText
-        android:id="@+id/editTextTextPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#FFFFFF"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:textColor="#FFFFFF"
-        tools:layout_editor_absoluteX="98dp"
-        tools:layout_editor_absoluteY="513dp" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Bienvenido a TipyMovies"
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#DA0101"
-        android:text="Ingresar"
-        android:textColor="#000000"
-        app:iconTint="#000000"
-        app:strokeColor="@color/black"
-        tools:layout_editor_absoluteX="151dp"
-        tools:layout_editor_absoluteY="610dp" />
+            android:textColor="#D30E0E"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.105" />
+
+
+        <EditText
+            android:id="@+id/contraseña"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="68dp"
+            android:backgroundTint="#FFFFFF"
+            android:ems="10"
+            android:hint="Contraseña"
+            android:inputType="textPassword"
+            android:textColor="#FFFFFF"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+
+        <EditText
+            android:id="@+id/usuario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="184dp"
+            android:layout_marginBottom="332dp"
+            android:backgroundTint="#FFFFFF"
+            android:ems="10"
+            android:hint="Name"
+            android:inputType="textPersonName"
+
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+            app:layout_constraintVertical_bias="0.144" />
+
+        <Button
+            android:id="@+id/ingresar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="156dp"
+            android:backgroundTint="#DA0101"
+            android:text="Ingresar"
+            android:textColor="#000000"
+            app:iconTint="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"></Button>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
