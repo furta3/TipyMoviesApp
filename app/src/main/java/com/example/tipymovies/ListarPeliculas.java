@@ -111,6 +111,7 @@ public class ListarPeliculas extends AppCompatActivity {
                         mybundle.putString("poster",movies.get(recyclerView.getChildAdapterPosition(v)).getPoster());
                         mybundle.putString("anio",movies.get(recyclerView.getChildAdapterPosition(v)).getYear());
                         detalles.putExtras(mybundle);
+                        Log.d("Error", mybundle+"hola");
                         startActivity(detalles);
                         //Toast.makeText(getApplicationContext(),"Selección: "+movies.get(recyclerView.getChildAdapterPosition(v)).getTitle(),Toast.LENGTH_SHORT).show();
                     }
