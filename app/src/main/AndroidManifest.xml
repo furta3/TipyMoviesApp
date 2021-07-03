@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TipyMovies"
         android:usesCleartextTraffic="true">
-        <activity android:name=".DetallesPelicula"></activity>
+        <activity android:name=".ResultadoMiniJuego"></activity>
+        <activity android:name=".DetallesPelicula" />
         <activity android:name=".MiniJuego1" />
         <activity android:name=".AgregarPregunta" />
         <activity android:name=".ListarPeliculas" />

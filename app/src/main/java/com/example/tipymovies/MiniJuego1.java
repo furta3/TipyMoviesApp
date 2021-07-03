@@ -1,10 +1,13 @@
 package com.example.tipymovies;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,22 +26,22 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MiniJuego1 extends AppCompatActivity {
-    private static final String TAG = ListarPeliculas.class.getSimpleName();
+    private static final String TAG = MiniJuego1.class.getSimpleName();
     public static final String BASE_URL = Config.API_BASE_URL;
     public static final String TTPY_MOVIES_URL = Config.TTPY_MOVIES_URL;
     private static Retrofit retrofit = null;
     private final static String API_KEY = Config.API_KEY;
-    Button res1,res2,res3,res4, btnSiguente,btnCancelar;
+    Button res1,res2,res3,res4;
     TextView pre, titulo;
     List<Trivia> Preguntas;
     int contador  = -1;
+    int combo=0,puntos=0,resCorrectas=0;
+    Bundle mybundle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mini_juego1);
-        Bundle mybundle = this.getIntent().getExtras();
-        btnSiguente  = (Button) findViewById(R.id.SiguientePreguntaMJ1);
-        btnCancelar = (Button) findViewById(R.id.CancelarMJ1);
+        mybundle = this.getIntent().getExtras();
         res1 = (Button) findViewById(R.id.Res1);
         res2 = (Button) findViewById(R.id.Res2);
         res3 = (Button) findViewById(R.id.Res3);
@@ -54,7 +57,6 @@ public class MiniJuego1 extends AppCompatActivity {
         }
 
         MovieApiService movieApiService = retrofit.create(MovieApiService.class);
-        //Call<SearchMovieResponse> call = movieApiService.search(API_KEY,peli);
         Call<Trivia1Response> call = movieApiService.getTrivia1(mybundle.getString("imdbID"));
         call.enqueue(new Callback<Trivia1Response>() {
             @Override
@@ -72,6 +74,9 @@ public class MiniJuego1 extends AppCompatActivity {
         res1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                puntuar(res1.getText().toString());
+                res1.setBackgroundColor(Color.parseColor("#00d639"));
+                res1.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#00d639")));
                 next();
             }
         });
@@ -99,18 +104,6 @@ public class MiniJuego1 extends AppCompatActivity {
                 next();
             }
         });
-        btnSiguente.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                next();
-            }
-        });
-        btnCancelar.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                finish();
-            }
-        });
     }
     public void next(){
         contador++;
@@ -128,9 +121,34 @@ public class MiniJuego1 extends AppCompatActivity {
             res2.setText(respuestas.get(1));
             res3.setText(respuestas.get(2));
             res4.setText(respuestas.get(3));
+
         }
         else{
+            MovieApiService movieApiService = retrofit.create(MovieApiService.class);
+            Call<String> call = movieApiService.puntuarMiniJuego1(mybundle.getString("imdbID"),"7","333");
+            call.enqueue(new Callback<String>() {
+                @Override
+                public void onResponse(Call<String> call, Response<String> response) {
+                    String results = response.body();
+                    Toast.makeText(Login.this, "Puntos:  "+user.getUsername(), Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "------------Resultado: "+results+" ------------------");
 
+                }
+                @Override
+                public void onFailure(Call<String> call, Throwable throwable) {
+                    Log.e(TAG, throwable.toString());
+                }
+            });
+        }
+    }
+    public void puntuar(String respuesta){
+        if(respuesta.equals(Preguntas.get(contador).getRespuestaC())){
+            resCorrectas+=1;
+            combo+=1;
+            puntos+=10*combo;
+        }
+        else{
+            combo=1;
         }
     }
 }
