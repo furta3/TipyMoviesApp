@@ -1,6 +1,8 @@
 package com.example.tipymovies;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -8,14 +10,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tipymovies.model.SearchUserResponse;
 import com.example.tipymovies.model.User;
 import com.example.tipymovies.rest.MovieApiService;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import okhttp3.OkHttpClient;
@@ -40,7 +40,14 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        SharedPreferences prefs = getSharedPreferences("MisPreferencias",Context.MODE_PRIVATE);
+        String email= prefs.getString("email", "");
+        if(!email.isEmpty()){
+            Toast.makeText(Login.this, "Logueado como: "+email, Toast.LENGTH_SHORT).show();
+            Intent intento = new Intent(Login.this,ListarPeliculas.class);
+            startActivity(intento);
+            finish();
+        }
         ingresar = (Button) findViewById(R.id.ingresar);
         username = (TextView) findViewById(R.id.usuario);
         password = (TextView) findViewById(R.id.contraseña);
@@ -70,8 +77,14 @@ public class Login extends AppCompatActivity {
                     public void onResponse(Call<SearchUserResponse> call, Response<SearchUserResponse> response) {
                         User user = response.body().getResult();
                         Log.d("Usuario",user.getUsername());
-                        Toast.makeText(Login.this, "Logueaste con exito Master "+user.getUsername(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Login.this, "Logueado como: "+user.getUsername(), Toast.LENGTH_SHORT).show();
                         if (user!=null){
+                            SharedPreferences prefs = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = prefs.edit();
+                            editor.putString("email", username.getText().toString());
+                            editor.putString("password", password.getText().toString());
+                            editor.putString("user_id",user.getId());
+                            editor.commit();
                             Intent intento = new Intent(Login.this,ListarPeliculas.class);
                             startActivity(intento);
                             finish();

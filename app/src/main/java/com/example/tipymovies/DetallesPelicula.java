@@ -16,6 +16,7 @@ public class DetallesPelicula extends AppCompatActivity {
     Button minijuego,agregarP;
     TextView titulo,anio;
     ImageView poster;
+    Bundle mybundle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +27,8 @@ public class DetallesPelicula extends AppCompatActivity {
         poster = (ImageView) findViewById(R.id.posterDetalles);
         minijuego = (Button) findViewById(R.id.btnMinijuego1Detalles);
 
-        Bundle mybundle = this.getIntent().getExtras();
+        mybundle = this.getIntent().getExtras();
+
 
         if(mybundle != null){
             titulo.setText(mybundle.getString("titulo"));
@@ -45,6 +47,10 @@ public class DetallesPelicula extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 Intent detalles = new Intent(DetallesPelicula.this,MiniJuego1.class);
+                mybundle.putString("imdbID",mybundle.getString("imdbID"));
+                mybundle.putString("titulo",mybundle.getString("titulo"));
+                mybundle.putString("poster",mybundle.getString("poster"));
+                detalles.putExtras(mybundle);
                 startActivity(detalles);
             }
         });
@@ -54,11 +60,11 @@ public class DetallesPelicula extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 Intent agregarpregunta = new Intent(DetallesPelicula.this,AgregarPregunta.class);
-                Bundle mybundle = new Bundle();
-                mybundle.putString("imdbID",mybundle.getString("imdbID"));
-                mybundle.putString("titulo",mybundle.getString("titulo"));
-                mybundle.putString("poster",mybundle.getString("poster"));
-                agregarpregunta.putExtras(mybundle);
+                Bundle mybundle2 = new Bundle();
+                mybundle2.putString("imdbID",mybundle.getString("imdbID"));
+                mybundle2.putString("titulo",mybundle.getString("titulo"));
+                mybundle2.putString("poster",mybundle.getString("poster"));
+                agregarpregunta.putExtras(mybundle2);
                 startActivity(agregarpregunta);
             }
         });
