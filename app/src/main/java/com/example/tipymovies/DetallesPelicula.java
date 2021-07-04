@@ -27,7 +27,8 @@ public class DetallesPelicula extends AppCompatActivity {
         poster = (ImageView) findViewById(R.id.posterDetalles);
         minijuego = (Button) findViewById(R.id.btnMinijuego1Detalles);
 
-         mybundle = this.getIntent().getExtras();
+        mybundle = this.getIntent().getExtras();
+
 
         if(mybundle != null){
             titulo.setText(mybundle.getString("titulo"));
@@ -63,7 +64,7 @@ public class DetallesPelicula extends AppCompatActivity {
                 mybundle2.putString("imdbID",mybundle.getString("imdbID"));
                 mybundle2.putString("titulo",mybundle.getString("titulo"));
                 mybundle2.putString("poster",mybundle.getString("poster"));
-                agregarpregunta.putExtras(mybundle);
+                agregarpregunta.putExtras(mybundle2);
                 startActivity(agregarpregunta);
             }
         });

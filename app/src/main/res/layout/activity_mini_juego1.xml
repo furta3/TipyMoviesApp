@@ -7,16 +7,29 @@
     android:background="#000000"
     tools:context=".MiniJuego1">
 
+    <ImageView
+        android:id="@+id/posterMiniJuego"
+        android:layout_width="128dp"
+        android:layout_height="180dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.232"
+        app:srcCompat="@mipmap/ic_launcher" />
+
     <Button
         android:id="@+id/Res1"
         android:layout_width="332dp"
         android:layout_height="55dp"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="#B6B6B6"
         android:text="[Respuesta]"
         android:textAlignment="viewStart"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Pregunta" />
 
@@ -24,7 +37,7 @@
         android:id="@+id/Res2"
         android:layout_width="332dp"
         android:layout_height="55dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="#B6B6B6"
         android:text="[Respuesta]"
         android:textAlignment="viewStart"
@@ -37,7 +50,7 @@
         android:id="@+id/Res3"
         android:layout_width="332dp"
         android:layout_height="55dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="#B6B6B6"
         android:text="[Respuesta]"
         android:textAlignment="viewStart"
@@ -64,8 +77,8 @@
     <TextView
         android:id="@+id/Pregunta"
         android:layout_width="266dp"
-        android:layout_height="103dp"
-        android:text="¿Acá iría la pregunta, no c, el fran, la come, para mi que?"
+        android:layout_height="58dp"
+        android:text="¿Cargando Pregunta?"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
@@ -73,8 +86,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.28" />
+        app:layout_constraintTop_toBottomOf="@+id/posterMiniJuego"
+        app:layout_constraintVertical_bias="0.076" />
 
     <TextView
         android:id="@+id/TituloMiniJuego1"
@@ -84,10 +97,11 @@
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/Pregunta"
+        app:layout_constraintBottom_toTopOf="@+id/posterMiniJuego"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.518" />
+        app:layout_constraintVertical_bias="0.76" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

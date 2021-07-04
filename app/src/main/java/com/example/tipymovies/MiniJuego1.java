@@ -1,9 +1,13 @@
 package com.example.tipymovies;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.tipymovies.model.Trivia;
 import com.example.tipymovies.model.Trivia1Response;
 import com.example.tipymovies.rest.MovieApiService;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,14 +38,19 @@ public class MiniJuego1 extends AppCompatActivity {
     TextView pre, titulo;
     List<Trivia> Preguntas;
     int contador  = -1;
-    int combo=1,puntos=0,resCorrectas=0;
+    int combo=1,puntos=0,resCorrectas=0,mejorCombo=0;
     Bundle mybundle;
-    String userid="7";
+    String userid;
+    ImageView poster;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mini_juego1);
+
+        SharedPreferences prefs = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
+        userid = prefs.getString("user_id","");
         mybundle = this.getIntent().getExtras();
+        poster = (ImageView) findViewById(R.id.posterMiniJuego);
         res1 = (Button) findViewById(R.id.Res1);
         res2 = (Button) findViewById(R.id.Res2);
         res3 = (Button) findViewById(R.id.Res3);
@@ -48,6 +58,11 @@ public class MiniJuego1 extends AppCompatActivity {
         pre = (TextView) findViewById(R.id.Pregunta);
         titulo = (TextView) findViewById(R.id.TituloMiniJuego1);
         titulo.setText(mybundle.getString("titulo"));
+        Picasso.with(getApplicationContext())
+                .load(mybundle.getString("poster"))
+                .placeholder(android.R.drawable.sym_def_app_icon)
+                .error(android.R.drawable.sym_def_app_icon)
+                .into(poster);
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(TTPY_MOVIES_URL)//BASE_URL
@@ -126,9 +141,19 @@ public class MiniJuego1 extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<String> call, Response<String> response) {
                     String results = response.body();
+
                     Toast.makeText(MiniJuego1.this, "Puntos:  "+puntos+ "  imbdID: "+mybundle.getString("imdbID")+" User_id: "+userid, Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "------------Puntos:  "+puntos+ "  imbdID: "+mybundle.getString("imdbID")+" User_id: "+userid+" Resultado: "+results+" ------------------");
-
+                    Intent resutados = new Intent(MiniJuego1.this,ResultadoMiniJuego.class);
+                    mybundle.putInt("puntos",puntos);
+                    mybundle.putInt("correctas",resCorrectas);
+                    mybundle.putInt("mejorCombo",mejorCombo);
+                    mybundle.putString("puntosTotales",results);
+                    mybundle.putString("titulo",mybundle.getString("titulo"));
+                    mybundle.putString("poster",mybundle.getString("poster"));
+                    resutados.putExtras(mybundle);
+                    startActivity(resutados);
+                    finish();
                 }
                 @Override
                 public void onFailure(Call<String> call, Throwable throwable) {
@@ -141,8 +166,9 @@ public class MiniJuego1 extends AppCompatActivity {
         if(respuesta.equals(Preguntas.get(contador).getRespuestaC())){
             resCorrectas+=1;
             puntos+=10*combo;
+            if(combo>mejorCombo)
+                mejorCombo =  combo;
             combo++;
-            Toast.makeText(MiniJuego1.this, "Puntos:  "+puntos, Toast.LENGTH_SHORT).show();
         }
         else{
             combo=1;

@@ -10,14 +10,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tipymovies.model.SearchUserResponse;
 import com.example.tipymovies.model.User;
 import com.example.tipymovies.rest.MovieApiService;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import okhttp3.OkHttpClient;
@@ -85,6 +83,7 @@ public class Login extends AppCompatActivity {
                             SharedPreferences.Editor editor = prefs.edit();
                             editor.putString("email", username.getText().toString());
                             editor.putString("password", password.getText().toString());
+                            editor.putString("user_id",user.getId());
                             editor.commit();
                             Intent intento = new Intent(Login.this,ListarPeliculas.class);
                             startActivity(intento);
