@@ -17,6 +17,10 @@ public class Trivia {
     private String respuestaI2;
     @SerializedName("respuestaI3")
     private String respuestaI3;
+    @SerializedName("poster")
+    private String poster;
+    @SerializedName("titulo")
+    private String titulo;
 
     public String getId() {
         return id;
@@ -73,4 +77,12 @@ public class Trivia {
     public void setRespuestaI3(String respuestaI3) {
         this.respuestaI3 = respuestaI3;
     }
+
+    public String getPoster() { return poster; }
+
+    public void setPoster(String poster) { this.poster = poster; }
+
+    public String getTitulo() { return titulo; }
+
+    public void setTitulo(String titulo) { this.titulo = titulo; }
 }

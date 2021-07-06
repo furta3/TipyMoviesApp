@@ -42,39 +42,43 @@ public class AgregarPregunta extends AppCompatActivity {
         AgregarP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("Error", mybundle.getString("imdbID")+" hola");
-                if (retrofit == null) {
-                    retrofit = new Retrofit.Builder()
-
-                            .baseUrl(TTPY_MOVIES_URL)//BASE_URL
-                            .addConverterFactory(GsonConverterFactory.create())
-                            .build();
-
-                }
                 pre = (EditText) findViewById(R.id.taPregunta);
                 resC = (EditText) findViewById(R.id.tbResC);
                 resI1 = (EditText) findViewById(R.id.tbResI1);
                 resI2 = (EditText) findViewById(R.id.tbResI2);
                 resI3 = (EditText) findViewById(R.id.tbResI3);
+                if(!pre.getText().equals("") && !resC.getText().equals("") && !resI1.getText().equals("") && !resI2.getText().equals("") && !resI3.getText().equals("")){
+                    if (retrofit == null) {
+                        retrofit = new Retrofit.Builder()
 
-                MovieApiService movieApiService = retrofit.create(MovieApiService.class);
-                Call<String> call = movieApiService.agregarPregunta(mybundle.getString("imdbID"),pre.getText().toString(),resC.getText().toString(),resI1.getText().toString(),resI2.getText().toString(),resI3.getText().toString());
-                call.enqueue(new Callback<String>() {
-                    @Override
-                    public void onResponse(Call<String> call, Response<String> response) {
-                        String result = response.body();
-                        Log.d("resultado",result);
+                                .baseUrl(TTPY_MOVIES_URL)//BASE_URL
+                                .addConverterFactory(GsonConverterFactory.create())
+                                .build();
 
-                        if (result!=null){
-                            Toast.makeText(AgregarPregunta.this, "Se cargo la pregunta con exito", Toast.LENGTH_SHORT).show();
-                            finish();
+                    }
+
+                    MovieApiService movieApiService = retrofit.create(MovieApiService.class);
+                    Call<String> call = movieApiService.agregarPregunta(mybundle.getString("imdbID"),pre.getText().toString(),resC.getText().toString(),resI1.getText().toString(),resI2.getText().toString(),resI3.getText().toString());
+                    call.enqueue(new Callback<String>() {
+                        @Override
+                        public void onResponse(Call<String> call, Response<String> response) {
+                            String result = response.body();
+                            Log.d("resultado",result);
+
+                            if (result!=null){
+                                Toast.makeText(AgregarPregunta.this, "Se cargo la pregunta con exito", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
                         }
-                    }
-                    @Override
-                    public void onFailure(Call<String> call, Throwable throwable) {
-                        Log.e("Error", throwable.toString());
-                    }
-                });
+                        @Override
+                        public void onFailure(Call<String> call, Throwable throwable) {
+                            Log.e("Error", throwable.toString());
+                        }
+                    });
+                }
+                else{
+                    Toast.makeText(AgregarPregunta.this, "Llene todos los campos para continuar.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

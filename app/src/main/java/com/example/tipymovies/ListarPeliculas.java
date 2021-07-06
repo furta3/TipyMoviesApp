@@ -35,7 +35,7 @@ public class ListarPeliculas extends AppCompatActivity {
     // insert your themoviedb.org API KEY here
     private final static String API_KEY = Config.API_KEY;
 
-    Button buscar,siguiente,top10;
+    Button buscar,siguiente,top10, btnTrivia;
     TextView textoBusqueda;
     TextView movieTitle;
     ImageView poster;
@@ -49,6 +49,7 @@ public class ListarPeliculas extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         connectAndGetApiData("Garfield");
 
+        btnTrivia = (Button) findViewById(R.id.btnTrivia);
         buscar = (Button) findViewById(R.id.buscar);
         textoBusqueda = (TextView) findViewById(R.id.textoBusqueda);
         buscar.setOnClickListener(new View.OnClickListener(){
@@ -73,7 +74,16 @@ public class ListarPeliculas extends AppCompatActivity {
                 startActivity(detalles);
             }
         });
-
+        btnTrivia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent trivia = new Intent(ListarPeliculas.this,MiniJuego1.class);
+                Bundle mybundle = new Bundle();
+                mybundle.putInt("mj",2);
+                trivia.putExtras(mybundle);
+                startActivity(trivia);
+            }
+        });
 
         /*movieTitle = (TextView) findViewById(R.id.movieTitle);
         movieTitle.setOnClickListener(new View.OnClickListener(){

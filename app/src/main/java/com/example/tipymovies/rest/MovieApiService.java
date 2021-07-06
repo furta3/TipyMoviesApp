@@ -39,4 +39,10 @@ public interface MovieApiService {
 
     @GET("api/PuntuarMiniJuego1")
     Call<String> puntuarMiniJuego1(@Query("imdbID") String imdbID, @Query("user_id") String user_id, @Query("puntos") int puntos);
+
+    @GET("api/MiniJuego2")
+    Call<Trivia1Response> getTrivia2();
+
+    @GET("api/PuntuarMiniJuego2")
+    Call<String> puntuarMiniJuego2(@Query("user_id") String user_id, @Query("puntos") int puntos);
 }
