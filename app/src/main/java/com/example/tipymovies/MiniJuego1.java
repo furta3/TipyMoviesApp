@@ -49,6 +49,13 @@ public class MiniJuego1 extends AppCompatActivity {
         setContentView(R.layout.activity_mini_juego1);
         //ESTO VA PRIMERO QUE TODO PLS//
 
+        if (retrofit == null) {
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(TTPY_MOVIES_URL)//BASE_URL
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
+
         SharedPreferences prefs = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
         userid = prefs.getString("user_id","");
         mybundle = this.getIntent().getExtras();
@@ -126,13 +133,6 @@ public class MiniJuego1 extends AppCompatActivity {
                 .placeholder(android.R.drawable.sym_def_app_icon)
                 .error(android.R.drawable.sym_def_app_icon)
                 .into(poster);
-        if (retrofit == null) {
-            retrofit = new Retrofit.Builder()
-                    .baseUrl(TTPY_MOVIES_URL)//BASE_URL
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-        }
-
         MovieApiService movieApiService = retrofit.create(MovieApiService.class);
         Call<Trivia1Response> call = movieApiService.getTrivia1(mybundle.getString("imdbID"));
         call.enqueue(new Callback<Trivia1Response>() {
@@ -155,12 +155,6 @@ public class MiniJuego1 extends AppCompatActivity {
                 .placeholder(android.R.drawable.sym_def_app_icon)
                 .error(android.R.drawable.sym_def_app_icon)
                 .into(poster);
-        if (retrofit == null) {
-            retrofit = new Retrofit.Builder()
-                    .baseUrl(TTPY_MOVIES_URL)//BASE_URL
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-        }
 
         MovieApiService movieApiService = retrofit.create(MovieApiService.class);
         Call<Trivia1Response> call = movieApiService.getTrivia2();
@@ -180,7 +174,7 @@ public class MiniJuego1 extends AppCompatActivity {
 
     public void next(int mj){
         contador++;
-
+        Log.d(TAG, "contador: "+contador);
         if(contador<=9){
             if(mj==2){
                 Picasso.with(getApplicationContext())
@@ -234,17 +228,31 @@ public class MiniJuego1 extends AppCompatActivity {
                 });
             }
             else {
-                Toast.makeText(MiniJuego1.this, "Puntos:  " + puntos, Toast.LENGTH_SHORT).show();
-                Intent resutados = new Intent(MiniJuego1.this, ResultadoMiniJuego.class);
-                mybundle.putInt("puntos", puntos);
-                mybundle.putInt("correctas", resCorrectas);
-                mybundle.putInt("mejorCombo", mejorCombo);
-                mybundle.putString("puntosTotales", "sin hacer");
-                mybundle.putString("titulo", mybundle.getString("No va título"));
-                mybundle.putString("poster", mybundle.getString("Imagen para mostrar"));
-                resutados.putExtras(mybundle);
-                startActivity(resutados);
-                finish();
+                MovieApiService movieApiService = retrofit.create(MovieApiService.class);
+                Call<String> call = movieApiService.puntuarMiniJuego2(userid, puntos);
+                call.enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+                        String results = response.body();
+
+                        Toast.makeText(MiniJuego1.this, "Puntos:  " + puntos, Toast.LENGTH_SHORT).show();
+                        Intent resutados = new Intent(MiniJuego1.this, ResultadoMiniJuego.class);
+                        mybundle.putInt("puntos", puntos);
+                        mybundle.putInt("correctas", resCorrectas);
+                        mybundle.putInt("mejorCombo", mejorCombo);
+                        mybundle.putString("puntosTotales", results);
+                        mybundle.putString("titulo", mybundle.getString("No va título"));
+                        mybundle.putString("poster", mybundle.getString("Imagen para mostrar"));
+                        resutados.putExtras(mybundle);
+                        startActivity(resutados);
+                        finish();
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable throwable) {
+                        Log.e(TAG, throwable.toString());
+                    }
+                });
             }
         }
     }
