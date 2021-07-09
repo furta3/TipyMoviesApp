@@ -29,18 +29,20 @@
             android:id="@+id/contraseña"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="380dp"
+            android:layout_marginBottom="76dp"
             android:backgroundTint="#FFFFFF"
             android:ems="10"
             android:hint="Contraseña"
-            android:inputType="textPassword"
 
+            android:inputType="textPassword"
             android:textColor="#FFFFFF"
             android:textColorHint="#FFFFFF"
+            app:layout_constraintBottom_toTopOf="@+id/ingresar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintVertical_bias="1.0" />
 
         <EditText
             android:id="@+id/usuario"
@@ -56,6 +58,7 @@
             android:textColorHint="#FFFFFF"
             app:layout_constraintBottom_toTopOf="@+id/contraseña"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView"
             app:layout_constraintVertical_bias="1.0" />
@@ -64,17 +67,15 @@
             android:id="@+id/ingresar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="100dp"
+            android:layout_marginTop="412dp"
             android:backgroundTint="#DA0101"
+
             android:text="Ingresar"
             android:textColor="#000000"
             app:iconTint="#000000"
-            app:layout_constraintBottom_toBottomOf="parent"
-
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/contraseña"
-            app:layout_constraintVertical_bias="1.0"></Button>
+            app:layout_constraintTop_toBottomOf="@+id/textView"></Button>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

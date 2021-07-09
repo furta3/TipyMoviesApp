@@ -46,12 +46,12 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         SharedPreferences prefs = getSharedPreferences("MisPreferencias",Context.MODE_PRIVATE);
         String email = prefs.getString("email", "");
-        /*if(!email.isEmpty()){
+        if(!email.isEmpty()){
             Toast.makeText(Login.this, "Logueado como: "+email, Toast.LENGTH_SHORT).show();
             Intent intento = new Intent(Login.this,ListarPeliculas.class);
             startActivity(intento);
             finish();
-        }*/
+        }
         ingresar = (Button) findViewById(R.id.ingresar);
         username = (TextView) findViewById(R.id.usuario);
         password = (TextView) findViewById(R.id.contraseña);
@@ -104,8 +104,6 @@ public class Login extends AppCompatActivity {
                         }
                     });
             }
-
         });
-
     }
 }
