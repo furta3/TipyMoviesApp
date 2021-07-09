@@ -14,7 +14,7 @@ import com.squareup.picasso.Picasso;
 public class ResultadoMiniJuego extends AppCompatActivity {
     Bundle mybundle;
     TextView rpt,rmc,rpo,rrc;
-    Button btnAceptar, btnRankingTrivia;
+    Button btnAceptar;
     ImageView poster;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,14 +52,6 @@ public class ResultadoMiniJuego extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 finish();
-            }
-        });
-        btnRankingTrivia = (Button) findViewById(R.id.btnRankingTrivia);
-        btnRankingTrivia.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent topTrivia = new Intent(ResultadoMiniJuego.this,TopTenTrivia.class);
-                startActivity(topTrivia);
             }
         });
     }
