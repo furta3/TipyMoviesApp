@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,22 +27,30 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+
+
 public class Login extends AppCompatActivity {
     Button ingresar;
     TextView username;
+    String llave = "sesion";
     public static final String TTPY_MOVIES_URL = Config.TTPY_MOVIES_URL;
     private static Retrofit retrofit = null;
     TextView password;
-
+    SharedPreferences preferences = this.getSharedPreferences("Sesion", Context.MODE_PRIVATE);
     private static Retrofit retrofit2 = null;
     private static final String TAG = Login.class.getSimpleName();
-    @Override
+    CheckBox guardarSesionC;
 
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        SharedPreferences prefs = getSharedPreferences("MisPreferencias",Context.MODE_PRIVATE);
-        String email= prefs.getString("email", "");
+        //chequearSesion();
+        //if(chequearSesion().is)
+        String email= preferences.getString("email", "");
+        SharedPreferences.Editor editor = preferences.edit();
+        guardarSesionC = findViewById(R.id.chboxRecordarme);
         if(!email.isEmpty()){
             Toast.makeText(Login.this, "Logueado como: "+email, Toast.LENGTH_SHORT).show();
             Intent intento = new Intent(Login.this,ListarPeliculas.class);
@@ -52,9 +61,12 @@ public class Login extends AppCompatActivity {
         username = (TextView) findViewById(R.id.usuario);
         password = (TextView) findViewById(R.id.contraseña);
 
+
+
         ingresar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                guardarSesion(guardarSesionC.isChecked());
 
                 if (retrofit2 == null) {
                     HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -79,12 +91,12 @@ public class Login extends AppCompatActivity {
                         Log.d("Usuario",user.getUsername());
                         Toast.makeText(Login.this, "Logueado como: "+user.getUsername(), Toast.LENGTH_SHORT).show();
                         if (user!=null){
-                            SharedPreferences prefs = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
-                            SharedPreferences.Editor editor = prefs.edit();
-                            editor.putString("email", username.getText().toString());
-                            editor.putString("password", password.getText().toString());
-                            editor.putString("user_id",user.getId());
-                            editor.commit();
+                            SharedPreferences prefs1 = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor1 = prefs1.edit();
+                            editor1.putString("email", username.getText().toString());
+                            editor1.putString("password", password.getText().toString());
+                            editor1.putString("user_id",user.getId());
+                            editor1.commit();
                             Intent intento = new Intent(Login.this,ListarPeliculas.class);
                             startActivity(intento);
                             finish();
@@ -98,6 +110,22 @@ public class Login extends AppCompatActivity {
                 });
 
             }
+
+            /*private void inicializar(){
+                preferences = this.getSharedPreferences(name:"sesion", Context.MODE_PRIVATE);
+            }*/
+
+            /*private SharedPreferences getPreferences(int modePrivate) {
+            }*/
+
+            public void guardarSesion(boolean checked){
+                editor.putBoolean(llave, checked);
+                editor.apply();
+            }
+            /*private boolean chequearSesion(){
+                boolean sesion = this.
+                return sesion;
+            }*/
         });
 
     }

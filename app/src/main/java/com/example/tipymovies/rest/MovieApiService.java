@@ -45,4 +45,7 @@ public interface MovieApiService {
 
     @GET("api/PuntuarMiniJuego2")
     Call<String> puntuarMiniJuego2(@Query("user_id") String user_id, @Query("puntos") int puntos);
+
+    @GET("api/RankingMovilTrivia")
+    Call<SearchTopTenResponse> toptenTriviaJoin();
 }

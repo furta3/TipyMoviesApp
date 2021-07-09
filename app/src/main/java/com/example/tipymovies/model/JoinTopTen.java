@@ -7,27 +7,27 @@ import java.util.List;
 
 public class JoinTopTen {
 
-        @SerializedName("user_id")
-        private String userid;
+        //@SerializedName("user_id")
+        //private String userid;
         @SerializedName("username")
         private String username;
         @SerializedName("puntos")
         private String puntos;
 
 
-        public JoinTopTen(String userid,String username, String puntos) {
-            this.userid = userid;
+        public JoinTopTen(/*String userid,*/String username, String puntos) {
+            //this.userid = userid;
             this.username = username;
             this.puntos = puntos;
         }
 
-    public String getUserid() {
+    /*public String getUserid() {
         return userid;
-    }
+    }*/
 
-    public void setUserid(String userid) {
+    /*public void setUserid(String userid) {
         this.userid = userid;
-    }
+    }*/
 
     public String getUsername() {
         return username;
