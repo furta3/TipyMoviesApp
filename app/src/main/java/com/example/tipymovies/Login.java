@@ -32,11 +32,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Login extends AppCompatActivity {
     Button ingresar;
     TextView username;
-    String llave = "sesion";
     public static final String TTPY_MOVIES_URL = Config.TTPY_MOVIES_URL;
     private static Retrofit retrofit = null;
     TextView password;
-    SharedPreferences preferences = this.getSharedPreferences("Sesion", Context.MODE_PRIVATE);
     private static Retrofit retrofit2 = null;
     private static final String TAG = Login.class.getSimpleName();
     CheckBox guardarSesionC;
@@ -46,10 +44,8 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //chequearSesion();
-        //if(chequearSesion().is)
-        String email= preferences.getString("email", "");
-        SharedPreferences.Editor editor = preferences.edit();
+        SharedPreferences prefs = getSharedPreferences("MisPreferencias",Context.MODE_PRIVATE);
+        String email = prefs.getString("email", "");
         guardarSesionC = findViewById(R.id.chboxRecordarme);
         if(!email.isEmpty()){
             Toast.makeText(Login.this, "Logueado como: "+email, Toast.LENGTH_SHORT).show();
@@ -66,51 +62,53 @@ public class Login extends AppCompatActivity {
         ingresar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                guardarSesion(guardarSesionC.isChecked());
 
-                if (retrofit2 == null) {
-                    HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-                    interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-                    OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
-                    retrofit2 = new Retrofit.Builder()
-                            .baseUrl(TTPY_MOVIES_URL)//BASE_URL
-                            .addConverterFactory(GsonConverterFactory.create())
-                            .client(client)
-                            .build();
-                }
+                    if (retrofit2 == null) {
+                        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+                        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+                        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+                        retrofit2 = new Retrofit.Builder()
+                                .baseUrl(TTPY_MOVIES_URL)//BASE_URL
+                                .addConverterFactory(GsonConverterFactory.create())
+                                .client(client)
+                                .build();
+                    }
 
-                MovieApiService movieApiService = retrofit2.create(MovieApiService.class);
-                //Call<SearchMovieResponse> call = movieApiService.search(API_KEY,peli);
+                    MovieApiService movieApiService = retrofit2.create(MovieApiService.class);
+                    //Call<SearchMovieResponse> call = movieApiService.search(API_KEY,peli);
 
-                JSONObject paramObject = new JSONObject();
-                Call<SearchUserResponse> call = movieApiService.searchuser(username.getText().toString(),password.getText().toString());
-                call.enqueue(new Callback<SearchUserResponse>() {
-                    @Override
-                    public void onResponse(Call<SearchUserResponse> call, Response<SearchUserResponse> response) {
-                        User user = response.body().getResult();
-                        Log.d("Usuario",user.getUsername());
-                        Toast.makeText(Login.this, "Logueado como: "+user.getUsername(), Toast.LENGTH_SHORT).show();
-                        if (user!=null){
-                            SharedPreferences prefs1 = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
-                            SharedPreferences.Editor editor1 = prefs1.edit();
-                            editor1.putString("email", username.getText().toString());
-                            editor1.putString("password", password.getText().toString());
-                            editor1.putString("user_id",user.getId());
-                            editor1.commit();
-                            Intent intento = new Intent(Login.this,ListarPeliculas.class);
-                            startActivity(intento);
-                            finish();
-                        }else {
+                    JSONObject paramObject = new JSONObject();
+                    Call<SearchUserResponse> call = movieApiService.searchuser(username.getText().toString(), password.getText().toString());
+                    call.enqueue(new Callback<SearchUserResponse>() {
+                        @Override
+                        public void onResponse(Call<SearchUserResponse> call, Response<SearchUserResponse> response) {
+                            User user = response.body().getResult();
+                            Log.d("Usuario", user.getUsername());
+                            Toast.makeText(Login.this, "Logueado como: " + user.getUsername(), Toast.LENGTH_SHORT).show();
+                            if(guardarSesionC.isChecked()) {
+                                SharedPreferences prefs = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = prefs.edit();
+                                editor.putString("email", username.getText().toString());
+                                editor.putString("password", password.getText().toString());
+                                editor.putString("user_id", user.getId());
+                                editor.commit();
+                                Intent intento = new Intent(Login.this, ListarPeliculas.class);
+                                startActivity(intento);
+                                finish();
+                            } else {
+
+                                Intent intento = new Intent(Login.this, ListarPeliculas.class);
+                                startActivity(intento);
+                                finish();
+                            }
                         }
-                    }
-                    @Override
-                    public void onFailure(Call<SearchUserResponse> call, Throwable throwable) {
-                        Log.e(TAG, throwable.toString());
-                    }
-                });
 
+                        @Override
+                        public void onFailure(Call<SearchUserResponse> call, Throwable throwable) {
+                            Log.e(TAG, throwable.toString());
+                        }
+                    });
             }
-
             /*private void inicializar(){
                 preferences = this.getSharedPreferences(name:"sesion", Context.MODE_PRIVATE);
             }*/
@@ -119,8 +117,8 @@ public class Login extends AppCompatActivity {
             }*/
 
             public void guardarSesion(boolean checked){
-                editor.putBoolean(llave, checked);
-                editor.apply();
+                //editor.putBoolean(llave, checked);
+                //editor.apply();
             }
             /*private boolean chequearSesion(){
                 boolean sesion = this.
