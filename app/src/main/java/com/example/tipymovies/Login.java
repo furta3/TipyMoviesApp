@@ -46,13 +46,12 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         SharedPreferences prefs = getSharedPreferences("MisPreferencias",Context.MODE_PRIVATE);
         String email = prefs.getString("email", "");
-        guardarSesionC = findViewById(R.id.chboxRecordarme);
-        if(!email.isEmpty()){
+        /*if(!email.isEmpty()){
             Toast.makeText(Login.this, "Logueado como: "+email, Toast.LENGTH_SHORT).show();
             Intent intento = new Intent(Login.this,ListarPeliculas.class);
             startActivity(intento);
             finish();
-        }
+        }*/
         ingresar = (Button) findViewById(R.id.ingresar);
         username = (TextView) findViewById(R.id.usuario);
         password = (TextView) findViewById(R.id.contraseña);
@@ -85,7 +84,7 @@ public class Login extends AppCompatActivity {
                             User user = response.body().getResult();
                             Log.d("Usuario", user.getUsername());
                             Toast.makeText(Login.this, "Logueado como: " + user.getUsername(), Toast.LENGTH_SHORT).show();
-                            if(guardarSesionC.isChecked()) {
+                            if (user != null) {
                                 SharedPreferences prefs = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor = prefs.edit();
                                 editor.putString("email", username.getText().toString());
@@ -96,10 +95,6 @@ public class Login extends AppCompatActivity {
                                 startActivity(intento);
                                 finish();
                             } else {
-
-                                Intent intento = new Intent(Login.this, ListarPeliculas.class);
-                                startActivity(intento);
-                                finish();
                             }
                         }
 
@@ -109,21 +104,7 @@ public class Login extends AppCompatActivity {
                         }
                     });
             }
-            /*private void inicializar(){
-                preferences = this.getSharedPreferences(name:"sesion", Context.MODE_PRIVATE);
-            }*/
 
-            /*private SharedPreferences getPreferences(int modePrivate) {
-            }*/
-
-            public void guardarSesion(boolean checked){
-                //editor.putBoolean(llave, checked);
-                //editor.apply();
-            }
-            /*private boolean chequearSesion(){
-                boolean sesion = this.
-                return sesion;
-            }*/
         });
 
     }
