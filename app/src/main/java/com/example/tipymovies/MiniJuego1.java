@@ -207,7 +207,7 @@ public class MiniJuego1 extends AppCompatActivity {
                     public void onResponse(Call<String> call, Response<String> response) {
                         String results = response.body();
 
-                        Toast.makeText(MiniJuego1.this, "Puntos:  " + puntos + "  imbdID: " + mybundle.getString("imdbID") + " User_id: " + userid, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(MiniJuego1.this, "Puntos:  " + puntos + "  imbdID: " + mybundle.getString("imdbID") + " User_id: " + userid, Toast.LENGTH_SHORT).show();
                         Log.d(TAG, "------------Puntos:  " + puntos + "  imbdID: " + mybundle.getString("imdbID") + " User_id: " + userid + " Resultado: " + results + " ------------------");
                         Intent resutados = new Intent(MiniJuego1.this, ResultadoMiniJuego.class);
                         mybundle.putInt("puntos", puntos);

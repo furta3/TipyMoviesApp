@@ -13,4 +13,11 @@ public class SearchTopTenResponse {
     public List<JoinTopTen> getResults() {
         return results;
     }
+
+    @SerializedName("toptentrivia")
+    private List<JoinTopTen> results2;
+
+    public List<JoinTopTen> getResults2() {
+        return results2;
+    }
 }
