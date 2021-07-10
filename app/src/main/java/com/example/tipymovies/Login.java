@@ -37,7 +37,6 @@ public class Login extends AppCompatActivity {
     TextView password;
     private static Retrofit retrofit2 = null;
     private static final String TAG = Login.class.getSimpleName();
-    CheckBox guardarSesionC;
 
 
     @Override
